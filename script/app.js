@@ -3,6 +3,7 @@ const gallery = document.querySelector('.gallery');
 const searchInput = document.querySelector('.search-input');
 const form = document.querySelector('.search-form');
 const more = document.querySelector('.more');
+const btnToggle = document.querySelector('#btn-toggle');
 let searchValue;
 let fetchLink;
 let currentSearch;
@@ -42,13 +43,13 @@ function imgGallery(data) {
     // console.log(photo);
     const galleryImg = document.createElement('div');
     galleryImg.classList.add('gallery-img');
-    const imgurl = 'photo.src.large'
+    const imgurl = 'photo.src.large';
     galleryImg.innerHTML = `
     
     <img src="${photo.src.large}"></img>
     <div class="gallery-info">
       <p>${photo.photographer}</p> 
-      <a class="gallery-info" href='imgurl'>Download</a>
+      <a class="gallery-info" href="${photo.src.large}" target="_blank">Download</a>
     </div>
     
     `;
@@ -88,6 +89,18 @@ async function loadMore() {
 }
 
 curatedPhotos();
+
+//toggle dark & light mode event
+
+btnToggle.addEventListener('click', () => {
+  let element = document.body;
+  element.classList.toggle('dark-theme');
+  if (btnToggle.textContent !== 'light') {
+    btnToggle.textContent = 'light';
+  } else {
+    btnToggle.textContent = 'dark';
+  }
+});
 
 /*
  *********Impliment reandom page***********
